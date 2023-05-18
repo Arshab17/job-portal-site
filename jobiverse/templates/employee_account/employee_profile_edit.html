@@ -1,0 +1,42 @@
+{% extends 'employee_account/base.html'%}
+<!-- employee_profile_edit.html -->
+
+
+
+
+{% block content %}
+{% for message in messages %}
+
+<span style="color:green"> {{message}}. </span><br>
+
+{%endfor%}<br>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="edit_image">Profile Image</label>
+      <input type="file" name="edit_image" class="form-control-file" id="edit_image">
+    </div>
+    <div class="form-group">
+      <label for="about">About Me</label>
+      <textarea name="about" class="form-control" id="about" rows="3">{{ profile.about }}</textarea>
+    </div>
+    <div class="form-group">
+      <label for="experience">Experience</label>
+      <textarea name="experience" class="form-control" id="experience" rows="3">{{ profile.experience }}</textarea>
+    </div>
+    <div class="form-group">
+      <label for="skills">Skills</label>
+      <textarea name="skills" class="form-control" id="skills" rows="3">{{ profile.skills }}</textarea>
+    </div>
+    <div class="form-group">
+      <label for="education">Education</label>
+      <input type="text" name="education" class="form-control" id="education" value="{{ profile.education }}">
+    </div>
+    <div class="form-group">
+      <label for="hobbies">Hobbies</label>
+      <textarea name="hobbies" class="form-control" id="hobbies" rows="3">{{ profile.hobbies }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg m-5 ">Save</button>
+  </form>
+  {% endblock %}

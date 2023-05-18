@@ -1,0 +1,120 @@
+{% extends 'employee_account/base.html' %} 
+
+{% block content %}
+
+<section class="h-100 gradient-custom-2">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-lg-9 col-xl-7">
+          <div class="card">
+            <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:200px;">
+              <div class="ms-4 mt-auto d-flex flex-column" style="width: 150px;">
+                <img src="{{employee.profile_img.url}}"
+                  alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+                  style="width: 150px; z-index: 1">
+                <a href="{% url 'emp_edit' %}" type="button" class="btn btn-dark" data-mdb-ripple-color="dark"
+                  style="z-index: 1;">
+                  Edit profile
+              </a>
+              </div>
+              <div class="ms-3" style="margin-top: 130px;">
+                <h5>{{employee.user.first_name}} {{employee.user.last_name}}</h5>
+                <p>{{employee.email}}</p>
+              </div>
+            </div>
+            <div class="p-4 text-black" style="background-color: #f8f9fa;">
+              <div class="d-flex justify-content-end text-center py-1">
+                <div>
+                  <a class="btn btn-outline-primary" href="{{ employee.resume}}">Resume</a>
+                </div>
+                <div class="px-3">
+                  <p class="mb-1 h5">1026</p>
+                  <p class="small text-muted mb-0">Followers</p>
+                </div>
+                <div>
+                  <p class="mb-1 h5">478</p>
+                  <p class="small text-muted mb-0">Following</p>
+                </div>
+              </div>
+            </div>
+            <div class="card-body p-4 text-black">
+              <div class="mb-5">
+                <p class="lead fw-normal mb-1">About</p>
+                <div class="p-4" style="background-color: #f8f9fa;">
+                  <p class="font-italic mb-1">{{profile.about}}</p>
+                  <p class="font-italic mb-1"></p>
+                  <p class="font-italic mb-0"></p>
+                </div>
+              </div>
+              <section class="experience section-padding">
+                <div class="container">
+                  <h3 class="experience-title">Experience</h3>
+                  
+                  <div class="experience-wrapper">
+                    <div class="company-wrapper clearfix">
+                      <div class="experience-title">{{profile.experience}}</div> <!-- NAME OF THE COMPANY YOUWORK WITH  -->
+                      <div class="time">{{profile.experience}}</div> <!-- THE TIME YOU WORK WITH THE COMPANY  -->
+                    </div>
+                    
+                    <div class="job-wrapper clearfix">
+                      <div class="experience-title">Front End Developer </div> <!-- JOB TITLE  -->
+                      <div class="company-description">
+                        <p>{{profile.experience}}.</p>  <!-- JOB DESCRIPTION  -->
+                      </div>
+                    </div>
+                    
+                    <div class="company-wrapper clearfix">
+                      <div class="experience-title">Company name</div> <!-- NAME OF THE COMPANY YOUWORK WITH  -->
+                      <div class="time">Nov 2010 - Present</div> <!-- THE TIME YOU WORK WITH THE COMPANY  -->
+                    </div>
+                    
+                     <div class="job-wrapper clearfix">
+                      <div class="experience-title">Freelance, Web Designer / Web Developer</div> <!-- JOB TITLE  -->
+                      <div class="company-description">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>  <!-- JOB DESCRIPTION  -->
+                      </div>
+                    </div>
+                    
+                    <div class="company-wrapper clearfix">
+                      <div class="experience-title">Company name</div> <!-- NAME OF THE COMPANY YOUWORK WITH  -->
+                      <div class="time">Nov 2009 - Nov 2010</div> <!-- THE TIME YOU WORK WITH THE COMPANY  -->
+                    </div> 
+                    
+                     <div class="job-wrapper clearfix">
+                      <div class="experience-title">Web Designer </div> <!-- JOB TITLE  -->
+                      <div class="company-description">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>   <!-- JOB DESCRIPTION  -->
+                      </div>
+                    </div>
+                    
+                  </div><!--Skill experience-->
+                  
+                  <div class="section-wrapper clearfix">
+                    <h3 class="section-title">Skills</h3>  <!-- YOUR SET OF SKILLS  -->
+                      <ul>
+                        <li class="skill-percentage">{{profile.skills}}</li>
+                        <li class="skill-percentage"></li>
+                        <li class="skill-percentage"></li>
+                        <li class="skill-percentage"></li>
+                        <li class="skill-percentage"></li>
+                        <li class="skill-percentage"></li>
+                        
+                      </ul>
+                    
+                  </div>
+                  
+                  <div class="section-wrapper clearfix">
+                    <h3 class="section-title">Hobbies</h3>  <!-- DESCRIPTION OF YOUR HOBBIES -->
+                    <p>{{profile.hobbies}}.</p>
+                    
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p> 
+                  </div>
+                  
+                </div>
+              </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock %}

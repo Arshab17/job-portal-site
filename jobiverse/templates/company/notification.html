@@ -1,0 +1,19 @@
+{% extends 'company/base.html' %}
+{% block content %}
+
+{% for notification in notify %}
+<div class="d-flex justify-content-center bg-secondary text-light m-5">
+    <p>{{notification.message}} - {{ notification.created_at }}</p> <hr>
+</div>
+    {% endfor %}
+
+
+{% comment %} 
+{% for notification in notifications %}
+<div class="notification bg-primary w-50">
+<p>   {{ notification.message }} - {{ notification.created_at }}</p>
+</div>
+{% endfor %}
+ {% endcomment %}
+
+ {% endblock content %}

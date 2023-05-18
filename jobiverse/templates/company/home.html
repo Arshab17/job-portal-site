@@ -1,0 +1,49 @@
+{% extends 'company/base.html' %}
+
+{% block content %}
+<div class="container-fluid bg-dark">
+    <div class="row">
+        <div class="col-md-2 col-12 bg-dark">
+            
+            <ul ><hr>
+           
+            <li><a class="text-decoration-none text-light" href="{% url 'applicants_list'  %}">Applicants {{count}}</a></li><hr class="bg-light ">
+            <li><a class="text-decoration-none text-light" href="{% url 'edit_post'  %}">Edit Post </a></li><hr class="bg-light ">
+            <li><a class="text-decoration-none text-light" href="{% url 'posted_jobs_c' %}">Posted jobs</a></li><hr class="bg-light ">
+       
+        </ul>
+            
+        </div>
+        <div class="col-md-8 col-12 p-0 mt-2 bg-seccondary" style=" background-color:#D6DBDF">
+            {% for vacancy in jobs %}
+
+            <h3 class="p-3 lead " style="background-color:#3498DB">{{ vacancy.designation }}</h3><br>
+            <div>
+                <img src="{{company.logo.url}}"
+                alt="Generic placeholder image" class="img-fluid img-thumbnail mt-2 mb-2"
+                style="width: 60px; z-index: 1">
+                
+            </div>
+
+            <h6 class='text-muted'>{{ vacancy.location}}</h6>
+            <p class="text-start font-monospace">{{ vacancy.description}}</p>
+            
+
+
+            <hr> <br>
+            {%endfor%}
+            
+        </div>
+        
+    <div class=" d-flex justify-content-end">Page:
+        {% for i in pages %}
+        <a class="btn btn-sm btn-outline-info m-1" href="?page={{i}}">{{i}}</a>
+        {%endfor%}
+    </div> 
+        {% include 'admin/footer.html' %}
+{% comment %}    
+        <div class="col-md-6 col-12 bg-primary w-50 h-50 p-0 m-0">jdgaoug</div> {% endcomment %}
+    </div>
+</div>
+
+{% endblock %}

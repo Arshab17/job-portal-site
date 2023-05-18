@@ -1,0 +1,113 @@
+{% extends 'employee_account/base.html' %}
+
+{% block content %}
+<div class="container-fluid bg-dark">
+    <div class="row">
+        <div class="col-md-2 col-12  bg-dark">
+            <ul class="text-decoration-none bg-dark border-5"><hr>
+            <li><a class="text-decoration-none bg-dark text-light pt-5" href="{% url 'job_application_detail'  %}">Applied Jobs {{count}}</a></li><hr class="bg-light ">
+            <li><a class="text-decoration-none bg-dark text-light" href="">Resume</a></li><hr class="bg-light"> 
+            <li><a class="text-decoration-none bg-dark text-light" href="">Saved Jobs</a></li><hr class="bg-light">
+            </ul>
+        </div>
+
+
+
+        <div class="col-md-3 col-12 p-0 mt-2  " style=" background-color:#D6DBDF">
+            
+<form class="m-3">
+   <input type="text" id="search" placeholder="Search..." name="search">
+   <button class="btn btn-outline-primary" type="submit">Search</button>
+ </form><br>
+
+
+            {% for vacancy in jobs %}
+
+            <h3 class="p-3 lead " style="background-color:#3498DB">{{ vacancy.designation }}</h3><br>
+            <div>
+                <img src="{{vacancy.company.logo.url}}"
+                alt="Generic placeholder image" class="img-fluid img-thumbnail m-2"
+                style="width: 60px; z-index: 1">
+                
+            </div>
+
+            <h6 class='text-muted' >{{ vacancy.location}}</h6>
+            <h6 >{{vacancy.posted}}</h6>
+            <p  class="text-start font-monospace ">{{ vacancy.description}}</p>
+            <p > {{vacancy.status}}</p>
+
+            <br>
+                {% if vacancy.id in li %}
+            <button class="btn btn-success ms-5" disabled>Applied</button>
+            {% else %}
+            <a href="{% url 'job_application_create' vacancy.id %}" class="btn btn-primary ms-5">Apply</a>
+            {% endif %}
+            <hr>
+            {%endfor%}
+        </div>
+   
+        <div class="col-md-7 col-12  w-50 h-50 px-0 mt-2">
+            <div class="container">
+                <table id="example" class="table table-hover  ">
+                <thead>
+                    <tr style=" background-color:#3498DB" >
+                        <th>s.no.</th>
+                        <th>company name</th>
+                        <th>company email</th>
+                        <th>logo</th>
+                        <th>website</th>
+                        <th>designation</th>
+                        <th>Action</th>
+            
+            
+                    </tr>
+                    </thead>    
+                    
+                    <tbody>
+                        {% for i in jobs %}
+                        <tr style="background-color:#D6DBDF">
+                            <td>{{forloop.counter}}</td>
+                            <td><img src="{{i.company.logo.url}}" 
+                                alt="Generic placeholder image" class="img-fluid img-thumbnail m-2"
+                                style="width: 60px; z-index: 1"></td>
+                                
+                            <td>{{i.company.company_name}}</td>
+                            <td>{{i.company.email}}</td>
+                            
+                            <td>{{i.company.website}}</td>
+                            <td>{{i.designation}}</td>
+                            <td>
+                                {% if i.id in li %}
+                                <button class="btn btn-success" disabled>Applied</button>
+                                {% else %}
+                                {% comment %} {% elif i.job_vacancy is None %}
+                                  <button class="btn btn-danger" disabled>No vacancy</button> {% endcomment %}
+                                <a href="{% url 'job_application_create' i.id %}" class="btn btn-primary">Apply</a>
+                                {% endif %}
+                            
+                                
+                            </td>
+            
+                        </tr>
+                        {%endfor%}
+                    </tbody> 
+                </table>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+ 
+
+    <div class=" d-flex justify-content-end">Page:
+        {% for i in pages %}
+        <a class="btn btn-sm btn-outline-info m-1" href="?page={{i}}">{{i}}</a>
+        {%endfor%}
+    </div> 
+
+    {% include 'admin/footer.html' %}
+</div>
+
+{% endblock %}
